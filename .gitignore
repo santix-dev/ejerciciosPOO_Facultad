@@ -1,2 +1,4 @@
 *.pdf
 *.drawio
+*.drawio.dtmp
+*.drawio.bkp
