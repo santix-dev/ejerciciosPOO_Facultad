@@ -33,6 +33,87 @@ class ControladorAlumno():
     	reader=csv.reader(archivo,delimiter=";")
     	for fila in reader:
     		self.agregarAlumno(Alumno(fila[0],fila[1],fila[2],fila[3],fila[4]))
+    def buscarAlumno(self,dni):
+    	flag=False
+    	i=0
+    	while not flag and i<self.__cantidad:
+    		flag=self.__alumnos[i].verificarDni(dni)
+    		i+=1
+    	return flag
+    def obtenerIndiceAlumno(self,dni):
+    	flag=False
+    	i=0
+    	while not flag and i<self.__cantidad:
+    		flag=self.__alumnos[i].verificarDni(dni)
+    		i+=1
+    	if flag:
+    		i-=1
+    	else:
+    		i=False
+    	return i
+    def ordenarXanio(self):
+	    cont=0
+	    ordenado=False
+	    tamano=self.__cantidad
+	    comparaciones=tamano
+	    for i in range(0,tamano):
+	        if ordenado==True:
+	            break
+	        for j in range(0,comparaciones-1):
+	            ordenado=True
+	            cont=cont+1
+	            if self.__alumnos[j].anio()>self.__alumnos[j+1].anio():
+	                ordenado=False
+	                aux=self.__alumnos[j]
+	                self.__alumnos[j]=self.__alumnos[j+1]
+	                self.__alumnos[j+1]=aux
+	        comparaciones=comparaciones-1
+	    return
+    def ordenarXnombres(self):
+	    cont=0
+	    ordenado=False
+	    tamano=self.__cantidad
+	    comparaciones=tamano
+	    for i in range(0,tamano):
+	        if ordenado==True:
+	            break
+	        for j in range(0,comparaciones-1):
+	            ordenado=True
+	            cont=cont+1
+	            if self.__alumnos[j].nombre()>self.__alumnos[j+1].nombre() and self.__alumnos[j].anio()==self.__alumnos[j+1].anio():
+	                ordenado=False
+	                aux=self.__alumnos[j]
+	                self.__alumnos[j]=self.__alumnos[j+1]
+	                self.__alumnos[j+1]=aux
+	        comparaciones=comparaciones-1
+	    return
+    def ordenars(self):
+    	self.ordenarXanio()
+    	self.ordenarXnombres()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     # def calcularDistanciasP0(self, unPunto):
     #     for i in range(self.__cantidad):
     #         distancia = unPunto.distanciaEuclidea(self.__alumnos[i])
