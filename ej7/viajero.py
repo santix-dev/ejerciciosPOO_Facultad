@@ -3,8 +3,8 @@ class Viajero():
 	__dni=""
 	__nom=""
 	__ape=""
-	__millas_acum=""
-	def __init__(self, num="",dni="",nom="",ape="",millas=""):
+	__millas_acum=0
+	def __init__(self, num="",dni="",nom="",ape="",millas=0):
 		self.__num_viajero=num
 		self.__dni=dni
 		self.__nom=nom
@@ -31,6 +31,15 @@ class Viajero():
 	def __add__(self,other):
 		self.__millas_acum+=int(other)
 		return self
-
-
+	def __sub__(self,other):
+		self.__millas_acum-=int(other)
+		return self
+	def __radd__(self,other):
+		self.__millas_acum+=int(other)
+		return self
+	def __rsub__(self,other):
+		self.__millas_acum-=int(other)
+		return self
+	def __eq__(self,other):
+		return self.__millas_acum==int(other)
 		

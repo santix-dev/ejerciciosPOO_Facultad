@@ -31,6 +31,9 @@ class Viajero():
 	def __add__(self,other):
 		self.__millas_acum+=int(other)
 		return self
+	def __sub__(self,other):
+		self.__millas_acum-=int(other)
+		return self
 
 
 		
