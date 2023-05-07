@@ -14,6 +14,9 @@ if __name__ == '__main__':
 		2) Consultar cantidad de millas
 		3) Acumular millas
 		4) Canjear millas
+		5) Ver viajero con mayor cantidad de millas
+		6) Acumular millas con sobrecarga de operador
+		7) Canjear millas con sobrecarga de operador
 	""")
 	opc=int(input("Ingrese opsao: "))
 	while opc!=0:
@@ -37,6 +40,21 @@ if __name__ == '__main__':
 			case 4:
 				millas=int(input("Ingrese la cantidad de millas a canjear"))
 				lista[i].canjearMillas(millas)
+			case 5:
+				mayor=lista[0]
+				for i in range(1,len(lista)):
+					mayor=lista[i] if lista[i]>mayor else mayor
+				print(f"El viajero con mas millas es {mayor.nombre()}")
+			case 6:
+				print(f"millas antes de acumular: {lista[i].cantidadTotalDeMillas()}")
+				millas=int(input("Ingrese la cantidad de millas a acumular: "))
+				lista[i]+millas
+				print(f"millas despues de acumular: {lista[i].cantidadTotalDeMillas()}")
+			case 7:
+				print(f"millas antes de canjear: {lista[i].cantidadTotalDeMillas()}")
+				millas=int(input("Ingrese la cantidad de millas a acumular: "))
+				lista[i]-millas
+				print(f"millas despues de canjear: {lista[i].cantidadTotalDeMillas()}")
 			case _:
 				pass
 		print("""
@@ -44,6 +62,9 @@ if __name__ == '__main__':
 		2) Consultar cantidad de millas
 		3) Acumular millas
 		4) Canjear millas
+		5) Ver viajero con mayor cantidad de millas
+		6) Acumular millas con sobrecarga de operador
+		7) Canjear millas con sobrecarga de operador
 		""")
 		opc=int(input("Ingrese opsao: "))
 		print(opc)

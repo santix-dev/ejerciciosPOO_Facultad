@@ -9,7 +9,7 @@ class Viajero():
 		self.__dni=dni
 		self.__nom=nom
 		self.__ape=ape
-		self.__millas_acum=millas
+		self.__millas_acum=int(millas)
 	def cantidadTotalDeMillas(self):
 		return self.__millas_acum
 	def acumularMillas(self,millas):
@@ -24,6 +24,13 @@ class Viajero():
 		return self.__millas_acum
 	def verifNum(self,num):
 		return int(self.__num_viajero)==num
+	def __gt__(self,other):
+		return self.__millas_acum>other.cantidadTotalDeMillas()
+	def nombre(self):
+		return self.__nom
+	def __add__(self,other):
+		self.__millas_acum+=int(other)
+		return self
 
 
 		
