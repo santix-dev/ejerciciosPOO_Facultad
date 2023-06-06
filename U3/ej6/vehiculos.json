@@ -1,0 +1,12 @@
+__class__:Lista,
+__vehiculos__:[
+	__class__:nuevo,
+	__atributos__:{
+		version:2015,
+		modelo:Focus,
+		puertas:5,
+		color:rojito,
+		precio_base:100000
+	}
+
+]

@@ -6,5 +6,5 @@ class InterfazLista(Interface):
 		pass
 	def agregar(elemento):
 		pass
-	def mostrar(posicion):
+	def mostrarElemento(posicion):
 		pass
