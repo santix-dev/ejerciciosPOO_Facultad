@@ -16,7 +16,7 @@
     {
       "__class__": "Doc_Inv",
       "__atributos__": {
-        "categoria": "Categoria A",
+        "categoria": "i",
         "plus": 5000,
         "carrera": "Informatica",
         "cargo": "Docente",

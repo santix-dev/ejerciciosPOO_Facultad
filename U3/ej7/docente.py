@@ -6,4 +6,22 @@ class Docente(Personal):
 		self._carrera = carrera
 		self._cargo = cargo
 		self._catedra = catedra
-		
+	def toJSON(self):
+		d={
+			"__class__":self.__class__.__name__,
+			"__atributos__":{
+				"carrera":self._carrera,
+				"cargo":self._cargo,
+				"catedra":self._catedra,
+				"cuil":self._cuil,
+				"apellido":self._apellido,
+				"nombre":self._nombre,
+				"basico":self._basico,
+				"antig":self._antig,
+			}
+		}
+		# print(d)
+		return d
+if __name__ == '__main__':
+	p=Docente("Informatica","jtp","algoritmos",20443166662,"gimenez","santiago",30000,1)
+	p.toJSON()

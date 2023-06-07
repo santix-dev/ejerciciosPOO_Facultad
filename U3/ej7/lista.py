@@ -24,7 +24,7 @@ class ListaEnlazada():
 		else:
 			self.__indice+=1
 			dato = self.__actual.personal()
-			self.__actual=self.getSiguiente()
+			self.__actual=self.__actual.getSiguiente()
 			return dato
 	def agregar(self,personal):
 		nodo=Nodo(personal)
@@ -57,3 +57,13 @@ class ListaEnlazada():
 			print(nodo.personal())
 		else:
 			print("No existe esa posicion")
+	def toJSON(self):
+		personal=[]
+		for persona in self:
+			personal.append(persona.toJSON())
+		print(personal)
+		d={
+			"__class__":self.__class__.__name__,
+			"personal":personal
+		}
+		return d
