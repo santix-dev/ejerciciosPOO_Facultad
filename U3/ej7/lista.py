@@ -4,6 +4,9 @@ from docente_investigador import Doc_Inv
 from investigador import Investigador
 from nodo import Nodo
 from personal import Personal
+from interfaz import InterfazLista
+from zope.interface import implementer
+@implementer(InterfazLista)
 class ListaEnlazada():
 	"""docstring for ListaEnlazada"""
 	def __init__(self):
@@ -23,7 +26,7 @@ class ListaEnlazada():
 			dato = self.__actual.personal()
 			self.__actual=self.getSiguiente()
 			return dato
-	def agregarPersonal(self,personal):
+	def agregar(self,personal):
 		nodo=Nodo(personal)
 		nodo.setSiguiente(self.__comienzo)
 		self.__comienzo=nodo

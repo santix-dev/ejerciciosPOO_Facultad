@@ -29,7 +29,7 @@ class ObjectEncoder(object):
 					atributos=unPersonal['__atributos__']      # saco los atributos
 					#print(atributos,i)
 					objetoPersonal=class_(**atributos)	   # creo una instancia con class_(en cada iteracion se convierte 
-					manejador.agregarPersonal(objetoPersonal)# en el constructor correspondiente al objeto almacenado) y le
+					manejador.agregar(objetoPersonal)# en el constructor correspondiente al objeto almacenado) y le
 					                                      # envio los atributos como diccionario, para funcionar deben 
 					                                       # tener el mismo nombre de variable en el archivo json y en 
 					                                       # el constructor
