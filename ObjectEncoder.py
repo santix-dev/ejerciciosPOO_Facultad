@@ -1,3 +1,5 @@
+import json
+from pathlib import Path
 class ObjectEncoder(object):
 	def decodificarDiccionario(self, d):
 		if '__class__' not in d:

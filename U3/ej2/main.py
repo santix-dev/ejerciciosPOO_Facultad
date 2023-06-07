@@ -31,9 +31,6 @@ if __name__ == '__main__':
 				tipo=input("Ingrese un tipo de heladinio: ")
 				gramos=p.tHelado[tipo][0]
 				helados.saboresXtipoHelado(gramos,sabores)
-
-
-				pass
 		print(f"1) Vender helado\n2) Mostrar los 5 sabores mas vendidos") 	
 		print(f"3) Ver total de gramos vendidos por sabor")
 		print(f"4) Mostrar todos los sabores vendidos en un tipo de helado")
