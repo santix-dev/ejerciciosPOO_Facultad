@@ -24,3 +24,5 @@ class Investigador(Personal):
 		return self._area
 	def clase(self):
 		return self.__class__.__name__
+	def sueldo(self):
+		return Personal.sueldo()

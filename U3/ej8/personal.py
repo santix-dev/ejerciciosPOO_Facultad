@@ -15,3 +15,9 @@ class Personal(ABC):
 		return self._apellido
 	def basico(self):
 		return self._basico
+	def dni(self):
+		return self._cuil[slice(2,-1)]
+	def modificarBasico(self,nuevo):
+		self._basico=nuevo
+	def sueldo(self):
+		return self._basico+self._basico*self._antig/100

@@ -6,7 +6,7 @@ class Doc_Inv(Docente,Investigador):
 	def __init__(self,categoria,plus,carrera,cargo,catedra,area,tipo,cuil,apellido,nombre,basico,antig):
 		Docente.__init__(self,carrera,cargo,catedra,cuil,apellido,nombre,basico,antig)
 		Investigador.__init__(self,area,tipo,cuil,apellido,nombre,basico,antig)
-		self.__categoria = categoria.lower()
+		self.__categoria = str(categoria).lower()
 		self.__plus = float(plus)
 	def toJSON(self):
 		d={
@@ -50,7 +50,10 @@ class Doc_Inv(Docente,Investigador):
 		return self.__categoria
 	def plus(self):
 		return self.__plus
-
+	def sueldo(self):
+		return Docente.sueldo()+self.__plus
+	def modificarExtra(self,nuevo):
+		self.__plus=nuevo
 
 
 if __name__ == '__main__':

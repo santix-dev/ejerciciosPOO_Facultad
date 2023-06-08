@@ -24,6 +24,14 @@ class Docente(Personal):
 		return d
 	def clase(self):
 		return self.__class__.__name__
+	def sueldo(self):
+		if self._cargo=="simple":
+			porCargo=self._basico*0.1
+		elif self._cargo=="semiexclusivo":
+			porCargo=self._basico*0.2
+		elif self._cargo=="exclusivo":
+			porCargo=self._basico*0.5
+		return Personal.sueldo()+porCargo
 
 if __name__ == '__main__':
 	p=Docente("Informatica","jtp","algoritmos",20443166662,"gimenez","santiago",30000,1)

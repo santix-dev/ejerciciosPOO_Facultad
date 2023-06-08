@@ -3,7 +3,10 @@ from apoyo import Apoyo
 from docente import Docente
 from docente_investigador import Doc_Inv
 from investigador import Investigador
+from interfaces_tes_dir import ITesorero, IDirector
 from ObjectEncoder import ObjectEncoder
+from zope.interface import implementer
+@implementer(ITesorero,IDirector)
 class ManejadorPersonal():
 	"""docstring for ManejadorPersonal"""
 	def __init__(self):
@@ -111,3 +114,25 @@ class ManejadorPersonal():
 				print(persona.nombre(),persona.apellido(),persona.plus())
 				total+=persona.plus()
 		print("total a solicitar al ministerio para pagar extras a docentes investigadores: ",total)
+
+	# metodos director
+	def modificarBasico(dni, nuevoBasico):
+		for persona in self.__lista:
+			if persona.dni()==dni:
+				persona.modificarBasico(nuevoBasico)
+	def modificarPorcentajeporcargo(cargo, nuevoPorcentaje):
+		for persona in self.__lista:
+			if persona.cargo()==cargo:
+				persona.modificarBasico(nuevoBasico)
+	def modificarPorcentajeporcategoría(categoria, nuevoPorcentaje):
+		pass
+	def modificarImporteExtra(dni, nuevoImporteExtra):
+		for persona in self.__lista:
+			if persona.dni()==dni:
+				persona.modificarExtra(nuevoImporteExtra)
+
+	# metodos tesorero
+	def gastosSueldoPorEmpleado ( dni):
+		for persona in self.__lista:
+			if persona.dni()==dni:
+				print(persona.sueldo())
