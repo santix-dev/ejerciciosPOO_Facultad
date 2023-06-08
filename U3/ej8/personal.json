@@ -1,0 +1,97 @@
+{
+    "__class__": "ListaEnlazada",
+    "personal": [
+        {
+            "__class__": "Investigador",
+            "__atributos__": {
+                "area": "inteligenica artificial",
+                "tipo": "senior",
+                "cuil": "1234567890",
+                "apellido": "perez",
+                "nombre": "juan",
+                "basico": 50000.0,
+                "antig": 5
+            }
+        },
+        {
+            "__class__": "Apoyo",
+            "__atributos__": {
+                "categoria": "iii",
+                "cuil": "40427123172",
+                "apellido": "sarate",
+                "nombre": "macsimiliano",
+                "basico": 50000.0,
+                "antig": 2
+            }
+        },
+        {
+            "__class__": "Doc_Inv",
+            "__atributos__": {
+                "categoria": "i",
+                "plus": 5000.0,
+                "carrera": "informatica",
+                "cargo": "docente",
+                "catedra": "programacion",
+                "area": "inteligenica artificial",
+                "tipo": "senior",
+                "cuil": "0987654321",
+                "apellido": "juanez",
+                "nombre": "camisa",
+                "basico": 60000.0,
+                "antig": 10
+            }
+        },
+        {
+            "__class__": "Doc_Inv",
+            "__atributos__": {
+                "categoria": "i",
+                "plus": 5000.0,
+                "carrera": "informatica",
+                "cargo": "docente",
+                "catedra": "programacion",
+                "area": "investigacion",
+                "tipo": "senior",
+                "cuil": "0987654321",
+                "apellido": "gomez",
+                "nombre": "maria",
+                "basico": 60000.0,
+                "antig": 10
+            }
+        },
+        {
+            "__class__": "Apoyo",
+            "__atributos__": {
+                "categoria": "administrativo",
+                "cuil": "5678901234",
+                "apellido": "lopez",
+                "nombre": "ana",
+                "basico": 40000.0,
+                "antig": 3
+            }
+        },
+        {
+            "__class__": "Docente",
+            "__atributos__": {
+                "carrera": "historia",
+                "cargo": "docente",
+                "catedra": "historia antigua",
+                "cuil": "4321098765",
+                "apellido": "garcia",
+                "nombre": "pedro",
+                "basico": 55000.0,
+                "antig": 8
+            }
+        },
+        {
+            "__class__": "Apoyo",
+            "__atributos__": {
+                "categoria": "ii",
+                "cuil": "20443166662",
+                "apellido": "gimenez",
+                "nombre": "santiago",
+                "basico": 30000.0,
+                "antig": 1
+            }
+        }
+    ]
+}

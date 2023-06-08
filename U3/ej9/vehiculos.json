@@ -1,0 +1,28 @@
+"__class__":"Lista",
+{
+  "vehiculos": [
+    {
+      "__class__": "Nuevo",
+      "__atributos__": {
+        "version": "2023",
+        "modelo": "ABC123",
+        "puertas": 4,
+        "color": "rojo",
+        "precio": 25000
+      }
+    },
+    {
+      "__class__": "Usado",
+      "__atributos__": {
+        "patente": "DEF456",
+        "año": 2018,
+        "kilometros": 50000,
+        "marca": "Ford",
+        "modelo": "XYZ789",
+        "puertas": 2,
+        "color": "azul",
+        "precio": 15000
+      }
+    }
+  ]
+}
