@@ -58,6 +58,16 @@ class Lista():
 			print(nodo.vehiculo())
 		else:
 			print("No existe esa posicion")
+	def vehiculo(self,posicion):
+		i=-1
+		nodo=self.__comienzo
+		while nodo!=None and i<posicion:
+			i+=1
+			nodo=nodo.getSiguiente()
+		if nodo!=None:
+			return(nodo.vehiculo())
+		else:
+			print("No existe esa posicion")
 	def mostrarClaseElemento(self,posicion):
 		i=-1
 		nodo=self.__comienzo
@@ -68,12 +78,12 @@ class Lista():
 			print("el elemento es de tipo: ",type(nodo.vehiculo()))
 		else:
 			print("No existe esa posicion")
-	def modificarPrecioUsado(self,patente):
+	def modificarPrecioUsado(self,patente,precio_pred=0):
 		nodo=self.__comienzo
 		while nodo!=None and nodo.vehiculo().patente()!=patente:
 			nodo=nodo.getSiguiente()
 		if nodo!=None:
-			precio=int(input("Ingrese precio: "))
+			precio=int(input("Ingrese precio: ")) if precio_pred==0 else precio_pred
 			nodo.modificarPrecio(precio)
 			print(nodo.vehiculo().importeVenta())
 	def vehiculoMasBarato(self):
@@ -116,3 +126,11 @@ class Lista():
 			prec=input("Precio base: ")
 			vehiculo=Usado(pat,ano,km,marca,mod,puer,col,prec)
 		return vehiculo
+	def len(self):
+		return self.__tope
+	def posicion(self,pat):
+		i=0
+		for vehic in self:
+			if vehic.patente()==pat:
+				return i
+			i+=1
