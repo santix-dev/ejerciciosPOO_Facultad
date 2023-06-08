@@ -35,7 +35,7 @@ class ObjectEncoder(object):
 					                                       # el constructor
 					
 			return manejador
-	def guardarJSONArchivo(self, diccionario, archivo="personal2.json"):
+	def guardarJSONArchivo(self, diccionario, archivo="personal.json"):
 		with open(archivo,"w") as destino:
 			json.dump(diccionario, destino, indent=4)
 			destino.close()

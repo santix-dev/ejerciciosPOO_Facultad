@@ -3,8 +3,8 @@ class Investigador(Personal):
 	"""docstring for Investigador"""
 	def __init__(self,area,tipo,cuil,apellido,nombre,basico,antig):
 		Personal.__init__(self,cuil,apellido,nombre,basico,antig)
-		self._area = area
-		self._tipo = tipo
+		self._area = area.lower()
+		self._tipo = tipo.lower()
 	def toJSON(self):
 		d={
 			"__class__":self.__class__.__name__,
@@ -20,3 +20,7 @@ class Investigador(Personal):
 		}
 		# print(d)
 		return d
+	def area(self):
+		return self._area
+	def clase(self):
+		return self.__class__.__name__

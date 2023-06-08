@@ -1,0 +1,58 @@
+{
+  "__class__":"ListaEnlazada",
+  "personal": [
+    {
+      "__class__": "Investigador",
+      "__atributos__": {
+        "area": "Investigacion",
+        "tipo": "Senior",
+        "cuil": "1234567890",
+        "apellido": "Perez",
+        "nombre": "Juan",
+        "basico": 50000,
+        "antig": 5
+      }
+    },
+    {
+      "__class__": "Doc_Inv",
+      "__atributos__": {
+        "categoria": "i",
+        "plus": 5000,
+        "carrera": "Informatica",
+        "cargo": "Docente",
+        "catedra": "Programacion",
+        "area": "Investigacion",
+        "tipo": "Senior",
+        "cuil": "0987654321",
+        "apellido": "Gomez",
+        "nombre": "Maria",
+        "basico": 60000,
+        "antig": 10
+      }
+    },
+    {
+      "__class__": "Apoyo",
+      "__atributos__": {
+        "categoria": "Administrativo",
+        "cuil": "5678901234",
+        "apellido": "Lopez",
+        "nombre": "Ana",
+        "basico": 40000,
+        "antig": 3
+      }
+    },
+    {
+      "__class__": "Docente",
+      "__atributos__": {
+        "carrera": "Historia",
+        "cargo": "Docente",
+        "catedra": "Historia Antigua",
+        "cuil": "4321098765",
+        "apellido": "Garcia",
+        "nombre": "Pedro",
+        "basico": 55000,
+        "antig": 8
+      }
+    }
+  ]
+}

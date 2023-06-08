@@ -3,9 +3,9 @@ class Docente(Personal):
 	"""docstring for Docente"""
 	def __init__(self,carrera,cargo,catedra,cuil,apellido,nombre,basico,antig):
 		Personal.__init__(self,cuil,apellido,nombre,basico,antig)
-		self._carrera = carrera
-		self._cargo = cargo
-		self._catedra = catedra
+		self._carrera = carrera.lower()
+		self._cargo = cargo.lower()
+		self._catedra = catedra.lower()
 	def toJSON(self):
 		d={
 			"__class__":self.__class__.__name__,
@@ -22,6 +22,9 @@ class Docente(Personal):
 		}
 		# print(d)
 		return d
+	def clase(self):
+		return self.__class__.__name__
+
 if __name__ == '__main__':
 	p=Docente("Informatica","jtp","algoritmos",20443166662,"gimenez","santiago",30000,1)
 	p.toJSON()

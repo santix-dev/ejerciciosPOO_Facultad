@@ -26,6 +26,15 @@ class ListaEnlazada():
 			dato = self.__actual.personal()
 			self.__actual=self.__actual.getSiguiente()
 			return dato
+	def __getitem__(self,indice):
+		if indice < 0:
+			raise IndexError("Index out of range")
+		actual = self.__comienzo
+		for _ in range(indice):
+			if actual is None:
+				raise IndexError("Index out of range")
+			actual = actual.getSiguiente()
+		return actual.personal()
 	def agregar(self,personal):
 		nodo=Nodo(personal)
 		nodo.setSiguiente(self.__comienzo)
@@ -54,7 +63,7 @@ class ListaEnlazada():
 			i+=1
 			nodo=nodo.getSiguiente()
 		if nodo!=None:
-			print(nodo.personal())
+			return nodo.personal()
 		else:
 			print("No existe esa posicion")
 	def toJSON(self):
@@ -67,3 +76,33 @@ class ListaEnlazada():
 			"personal":personal
 		}
 		return d
+	def ordenarXapellido(self):
+		lista=[persona for persona in self]
+		lista.sort()
+		for persona in lista:
+			print(f"Nombre {persona.nombre()},Apellido: {persona.apellido()} tipo: {persona.clase()}, sueldo: {persona.basico()}")			
+	# 	i=0
+	# 	band_cambio=True
+	# 	nodo=self.__comienzo
+	# 	nodo_sig=self.__comienzo.getSiguiente()
+	# 	while i<self.__tope and band_cambio:
+	# 		# Bandera para indicar si se realizó algún intercambio en la pasada actual
+	# 		band_cambio = False
+	# 		# Iterar de 0 a n-i-1, ya que los últimos i elementos ya están ordenados
+	# 		for j in range(0, self.__tope - i - 1):
+	#         	# Comparar elementos adyacentes y realizar intercambio si el primero es mayor que el segundo
+	# 			if self[j] > self[j + 1]:
+	# 				self[j], self[j + 1] = self[j + 1], self[j]
+	# 				band_cambio = True
+	# 		i+=1
+	# def ordenar2(self):
+	# 	nodo=self.__comienzo
+	# 	i=0
+	# 	cabeza=True
+	# 	while nodo!=None:
+	# 		if cabeza:
+	# 			if nodo.getSiguiente().personal()>nodo.personal():
+	# 				self.__comienzo=nodo.getSiguiente()
+	# 				nodo.setSiguiente(nodo.getSiguiente)
+
+	# 		i+=1

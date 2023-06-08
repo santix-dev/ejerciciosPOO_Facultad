@@ -83,3 +83,31 @@ class ManejadorPersonal():
 		d=self.__lista.toJSON()
 		encoder=ObjectEncoder()
 		encoder.guardarJSONArchivo(d)
+	def mostrarClase(self,pos):
+		print(f"el personal en la {pos} posicion es de tipo: {type(self.__lista.mostrarElemento(pos))}")
+	def listadoXnombreYcarrera(self,carrera):
+		lista_aux=[]
+		for persona in self.__lista:
+			if isinstance(persona,Doc_Inv):
+				lista_aux.append(persona)
+		lista_aux.sort()
+		for doc in lista_aux:
+			print(doc)
+	def contar_docInv_Inv(self,area):
+		inv=0
+		doc_inv=0
+		for persona in self.__lista:
+			if isinstance(persona,Doc_Inv) and persona.area()==area:
+				doc_inv+=1
+			elif isinstance(persona,Investigador) and persona.area()==area:
+				inv+=1
+		print(f"En este area trabajan: {inv} investigadores y {doc_inv} docentes-investigadores")
+	def listadoXapellido(self):
+		self.__lista.ordenarXapellido()
+	def listadoXcategoria(self,cat):
+		total=0
+		for persona in self.__lista:
+			if isinstance(persona,Doc_Inv) and persona.categoria()==cat:
+				print(persona.nombre(),persona.apellido(),persona.plus())
+				total+=persona.plus()
+		print("total a solicitar al ministerio para pagar extras a docentes investigadores: ",total)
