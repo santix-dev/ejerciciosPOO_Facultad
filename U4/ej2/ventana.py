@@ -38,7 +38,7 @@ class ventana():
 		# estilo_salir.configure("boton.salir",background="red")
 		self.__calcular=ttk.Button(self.__mainframe,text="Calcular",command=self.calcular)
 		self.__calcular.grid(column=0,row=5,pady=10)
-		self.__salir=ttk.Button(self.__mainframe,text="Salir")
+		self.__salir=ttk.Button(self.__mainframe,text="Salir",command=self.__ventana.destroy)
 		self.__salir.grid(column=1,row=5,pady=10,sticky="e")
 		#================================================
 		self.__ventana.mainloop()

@@ -9,6 +9,8 @@ class Ventanta():
 	def __init__(self):
 		self.__mainframe=ttk.Frame(self.__ventana,padding="3 3 12 12")#crea un marco (frame) que existira dentro de ventana, priimer paramtero
 		self.__mainframe.grid(column=0,row=0,sticky=(N,W,E,S))#indica que el marco se colocara en la columna y fila 0 de la ventana. sticky hace referencia hacia donde se puede expandir		
+		self.__mainframe.columnconfigure(4)
+		self.__mainframe.rowconfigure(4)
 		# ==============================================
 		self.__item_label=ttk.Label(self.__mainframe,text="item")
 		self.__cantidad_label=ttk.Label(self.__mainframe,text="Cantidad")
