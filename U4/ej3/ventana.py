@@ -28,6 +28,3 @@ class Ventana():
 			self.__dolares.set(0)
 	def ejecutar(self):
 		self.__ventana.mainloop()
-
-v=Ventana()
-v.ejecutar()
