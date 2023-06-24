@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Iniciar sesion</title>
+</head>
+<body>
+ 	<content>
+		<div>
+			<form action="{{ url_for('login') }}" method="post">
+				<label for="correo">Correo</label>
+				<input type="email" name="correo" id="correo"><br>
+				<label for="psw">Contraseña</label>
+				<input type="password" name="psw" id="psw"><br>
+				<label for="rol">Ingresar como:</label>
+				<label for="preceptor">Preceptor</label>
+				<input type="radio" name="rol" id="preceptor" value="preceptor">
+				<label for="padre">Padre</label>
+				<input type="radio" name="rol" id="padre" value="padre">
+				<button type="submit">Ingresar</button>
+			</form>
+		</div>
+	</content>
+
+</body>
+</html>

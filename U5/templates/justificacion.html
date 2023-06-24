@@ -1,0 +1,6 @@
+<form action="{{ url_for('justificar') }}" method="post">
+    Justificacion:
+    <input type="hidden" name="id" value="{{id_asis}}">
+    <input type="text" name="justif" id="" required>
+    <button type="submit">Guardar</button>
+</form>

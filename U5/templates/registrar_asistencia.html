@@ -1,0 +1,18 @@
+{% extends "index.html" %}
+{% block form %}
+<h1>Tomar asistencia</h1>
+<!--form action="{{url_for('cargar_asistencia')}}" method="post"-->
+    {% for asist in registros: %}
+            {{ asist.estudiante.nombre }}      
+            <a href="{{url_for('cargar_asistencia')}}?alu={{asist.idestudiante}}&v=s">Presente</a>
+            <a href="{{url_for('cargar_asistencia')}}?alu={{asist.idestudiante}}&v=n">No Asistio</a>
+        </p>
+    {% endfor %}
+<!--/form-->
+
+
+
+
+
+
+{% endblock %}
