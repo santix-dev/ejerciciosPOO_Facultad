@@ -1,18 +1,14 @@
-{% extends "index.html" %}
-{% block form %}
+<div class="container">
 <h1>Tomar asistencia</h1>
-<!--form action="{{url_for('cargar_asistencia')}}" method="post"-->
-    {% for asist in registros: %}
-            {{ asist.estudiante.nombre }}      
-            <a href="{{url_for('cargar_asistencia')}}?alu={{asist.idestudiante}}&v=s">Presente</a>
-            <a href="{{url_for('cargar_asistencia')}}?alu={{asist.idestudiante}}&v=n">No Asistio</a>
-        </p>
-    {% endfor %}
-<!--/form-->
+    <form action="{{ url_for('cargar_asistencia') }}" method="post">
+        <label for="asistencia">{{ registro.estudiante.nombre }} {{ registro.estudiante.apellido }}</label>
+        <input type="text" name="asistencia" id="" placeholder="s: presente/ n:ausente" maxlength="1" minlength="1" required autofocus>
+        <input type="hidden" name="curso" value="{{registro.estudiante.idcurso}}">
+        <input type="hidden" name="id" value="{{registro.id}}">
+        <button type="submit">Guardar asistencia</button>
+    </form>
+</div>
 
 
 
 
-
-
-{% endblock %}

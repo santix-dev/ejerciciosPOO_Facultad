@@ -1,0 +1,111 @@
+{% extends "index.html" %}
+{% block content %}
+{% set id=namespace(value=-1) %}
+{% macro cambiar_id(valor) %}
+    {% set id.value=valor %}
+{% endmacro %}
+{% set contadores = {
+    "asis_aula":0,
+    "inasis_aula":0,
+    "jus_aula":0,
+    "injus_aula":0,
+    "asis_fisica":0,
+    "inasis_fisica":0,
+    "jus_fisica":0,
+    "injus_fisica":0
+}%}
+<div class="tabla">
+    <table class="table-informe">
+        <thead>
+            <tr>
+                <th>Alumno</th>
+                <th>Asistencias Aula</th>
+                <th>Inasistencias Aula</th>
+                <th>Justificadas</th>
+                <th>Injustificadas</th>
+                <th>Asistencias Educacion fisica</th>
+                <th>Inasistencias Educacion fisica</th>
+                <th>Justificadas</th>
+                <th>Injustificadas</th>
+                <th>Inasistencias Totales</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for asist in asistencias %}
+
+                {%if id.value==-1 %}
+                    <tr>
+                        <td>{{asist.estudiante.nombre}}</td>
+                {% else %}
+                    {%if id.value!=asist.idestudiante %}
+                        <td>{{ contadores.asis_aula }}</td>
+                        <td>{{ contadores.inasis_aula }}</td>
+                        <td>{{ contadores.jus_aula }}</td>
+                        <td>{{ contadores.injus_aula }}</td>
+                        <td>{{ contadores.asis_fisica }}</td>
+                        <td>{{ contadores.inasis_fisica }}</td>
+                        <td>{{ contadores.jus_fisica }}</td>
+                        <td>{{ contadores.injus_fisica }}</td>
+                        <td>{{ contadores.inasis_fisica/2+contadores.inasis_aula }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{asist.estudiante.nombre}}</td>
+                        {% set _ = contadores.update({"asis_aula": 0}) %}
+                        {% set _ = contadores.update({"inasis_aula": 0}) %}
+                        {% set _ = contadores.update({"jus_aula": 0}) %}
+                        {% set _ = contadores.update({"injus_aula":  0}) %}
+                        {% set _ = contadores.update({"asis_fisica":  0}) %}
+                        {% set _ = contadores.update({"inasis_fisica":  0}) %}
+                        {% set _ = contadores.update({"jus_fisica":  0}) %}
+                        {% set _ = contadores.update({"injus_fisica":  0}) %}
+                    {% else %}
+                        {% if asist.codigoclase==1 %}    
+                            {% if asist.asistio=='s' %}
+                                {%  set _ = contadores.update({"asis_aula": contadores.get("asis_aula", 0) + 1}) %}
+                            {% else %}
+                                {% set _ = contadores.update({"inasis_aula": contadores.get("inasis_aula", 0) + 1}) %}
+                                {% if asist.justificacion=="" %}
+                                    {% set _ = contadores.update({"injus_aula": contadores.get("injus_aula", 0) + 1}) %}
+                                {% else %}
+                                    {% set _ = contadores.update({"jus_aula": contadores.get("jus_aula", 0) + 1}) %}
+                                {% endif %}
+                            {% endif %}
+                        {% else %}
+                            {% if asist.asistio=='s' %}
+                                {%  set _ = contadores.update({"asis_fisica": contadores.get("asis_fisica", 0) + 1}) %}
+                            {% else %}
+                                {% set _ = contadores.update({"inasis_fisica": contadores.get("inasis_fisica", 0) + 1}) %}
+                                {% if asist.justificacion=="" %}
+                                    {% set _ = contadores.update({"injus_fisica": contadores.get("injus_fisica", 0) + 1}) %}
+                                {% else %}
+                                    {% set _ = contadores.update({"jus_fisica": contadores.get("jus_fisica", 0) + 1}) %}
+                                {% endif %}
+                            {% endif %}
+                        {% endif %}
+                    {% endif %} 
+                {%endif%}               
+                {{ cambiar_id(asist.idestudiante) }}
+            {% endfor %}
+                <td>{{ contadores.asis_aula }}</td>
+                <td>{{ contadores.inasis_aula }}</td>
+                <td>{{ contadores.jus_aula }}</td>
+                <td>{{ contadores.injus_aula }}</td>
+                <td>{{ contadores.asis_fisica }}</td>
+                <td>{{ contadores.inasis_fisica }}</td>
+                <td>{{ contadores.jus_fisica }}</td>
+                <td>{{ contadores.injus_fisica }}</td>
+                <td>{{ contadores.inasis_fisica/2+contadores.inasis_aula }}</td>
+            </tr>
+        
+
+
+
+        </tbody>
+
+    </table>
+
+
+</div>
+
+
+{% endblock %}

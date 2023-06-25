@@ -16,12 +16,12 @@
          <li><a href="{{ url_for('logout') }}">Cerrar sesion</a></li>
          {% if session.rol=="preceptor" %}
          <li><a href="{{ url_for('registrar_asistencia') }}">Registrar asistencias curso</a></li>
-         <li><a href="{{ url_for('informe') }}">Informe asistencias</a></li>
+         <li><a href="{{ url_for('curso_informe') }}">Informe detallado</a></li>
          {% endif %}
       </ul>
    </nav> 
  <!-- si va a enviar datos al servidor use etiqueta form, si solo va a mostrar datos use la etiqueta article-->
-{% block form %}
+{% block content %}
 {% endblock %}
 </section>
 <footer>

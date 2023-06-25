@@ -11,6 +11,11 @@ class Asistencia(db.Model):
 	justificacion=db.Column(db.String(30),nullable=False)
 	idestudiante=db.Column(db.Integer,db.ForeignKey("estudiante.id"))
 	estudiante=db.relationship("Estudiante",backref="Asistencia")
+	def todict(self):
+		return {
+			"id_asis":self.id,
+			"estudiante":self.estudiante.nombre
+		}
 
 class Curso(db.Model):
 	__tablename__="curso"
@@ -18,6 +23,7 @@ class Curso(db.Model):
 	anio=db.Column(db.Integer,nullable=False)
 	division=db.Column(db.Integer,nullable=False)
 	idpreceptor=db.Column(db.Integer,db.ForeignKey("preceptor.id"))
+	cursos_preceptor=db.relationship("Preceptor",backref="curso")
 
 class Padre(db.Model):
 	__tablename__="padre"
@@ -34,6 +40,7 @@ class Preceptor(db.Model):
 	apellido=db.Column(db.String(80),nullable=False)
 	correo=db.Column(db.String(40),unique=True,nullable=False)
 	clave=db.Column(db.String(40),nullable=False)
+	cursos=db.relationship("Curso",backref="Preceptor")
 	def __str__(self):
 		return f"{self.todict()}"
 	def todict(self):

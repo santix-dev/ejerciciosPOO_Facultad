@@ -37,45 +37,15 @@ def login():
 		if valid_login(mail,psw,rol):
 			session["rol"]=rol
 			session["correo"]=mail
-			return redirect("/") #f"Bienvenido {session['correo']} {session['rol']}"
+			session["id"]=(Preceptor.query.filter_by(correo=mail).first()).id
+			return redirect("/")
 		else:
 			return redirect("/login")
 			
 @app.route("/registrar_asistencia",methods=["POST","GET"])
 def registrar_asistencia():
-	# if not (request.form.get("curso") and request.form.get("clase")) or request.args.get("etapa")==1:# or request.form.get("clase"):
-	cursos=db.session.query(Curso).all()
+	cursos=db.session.query(Curso).filter(Curso.idpreceptor==session["id"]).all()
 	return render_template("seleccionar_curso.html",cursos=cursos)
-	# elif request.form.get("etapa")==2:
-	# 	print(request.args.get("band"))
-	# 	curso=request.form.get("curso")
-	# 	clase=request.form.get("clase")
-	# 	fecha=date.today()
-	# 	alumnos = db.session.query(Estudiante).filter(Estudiante.idcurso==curso).all()
-	# 	for alumno in alumnos:
-	# 		asis=Asistencia(fecha=fecha,codigoclase=clase,asistio="p",justificacion="",idestudiante=alumno.id)
-	# 	db.session.commit()
-	# 	return redirect("/registrar_asistencia?etapa=3")
-	# elif request.args.get("etapa")==3:
-	# 	print("y muy Hasta aca tambien")
-	# 	asists=db.session.query(Asistencia).filter(Asistencia.asistio=='p').all()
-	# 	if asists:
-	# 		return render_template("registrar_asistencia.html",registros=asists)
-	# 	else:
-	# 		return redirect("/")
-	# return redirect("/")
-
-@app.route("/registrar_asistencia3",methods=["POST","GET"])
-def registrar_asistencia3():
-	asists=db.session.query(Asistencia).filter(Asistencia.asistio=='p').all()
-	# for asisti in asists:
-	# 	return asisti.fecha
-	# return "HOLA"
-	if asists!=None:
-		return render_template("registrar_asistencia.html",registros=asists)
-	return redirect("/")	
-
-
 
 @app.route("/registrar_asistencia2",methods=["POST","GET"])
 def registrar_asistencia2():
@@ -87,43 +57,51 @@ def registrar_asistencia2():
 		asis=Asistencia(fecha=fecha,codigoclase=clase,asistio="p",justificacion="",idestudiante=alumno.id)
 		db.session.add(asis)
 	db.session.commit()
-	return redirect("/registrar_asistencia3")
+	return registrar_asistencia3(curso)#alumno.nombre
+	
+
+# @app.route("/registrar_asistencia3",methods=["POST","GET"])
+def registrar_asistencia3(curso):
+	asist=db.session.query(Asistencia).join(Estudiante).filter(Asistencia.asistio=='p',Estudiante.idcurso==curso).first()
+	# return asist.estudiante.nombre
+	if asist!=None:
+		return render_template("registrar_asistencia.html",registro=asist)
+	return redirect("/")
 
 @app.route("/cargar_asistencia",methods={"POST","GET"})
 def cargar_asistencia():
-	# return str(request.args.get("alu"))
-	id_alu=int(request.args.get("alu"))
-	# return str(id_alu)
-	asist=db.session.query(Asistencia).filter(Asistencia.asistio=="p",Asistencia.idestudiante==id_alu).first()
-	asist.asistio=request.args.get("v")
+	id=int(request.form.get("id"))
+	asistio=request.form.get("asistencia")
+	curso=request.form.get("curso")
+	asist=db.session.query(Asistencia).filter(Asistencia.id==id).first()
+	asist.asistio=asistio
 	db.session.commit()
-	if request.args.get("v")=="n":
-		return render_template("justificacion.html",id_asis=asist.id)
-	return redirect("/registrar_asistencia3")
+	if asistio=="n":
+		return render_template("justificacion.html",asist=asist)
+	return registrar_asistencia3(curso)
 	
 @app.route("/justificar",methods=["POST","GET"])
 def justificar():
 	id=request.form.get("id")
 	jus=request.form.get("justif")
+	curso=request.form.get("curso")
 	asist=db.session.query(Asistencia).filter(Asistencia.id==id).first()
 	asist.justificacion=jus
 	db.session.commit()
-	return redirect("/registrar_asistencia3")
+	return registrar_asistencia3(curso)
 
-@app.route("/informe")
-def informe():
-	pass
+@app.route("/seleccionar_curso")
+def curso_informe():
+	cursos=db.session.query(Curso).filter(Curso.idpreceptor==session["id"]).all()
+	return render_template("seleccionar_curso_informe.html",cursos=cursos)
+@app.route("/mostrar_informe",methods=["POST","GET"])
+def mostrar_informe():
+	curso=request.form.get("curso")
+	asistencias=Asistencia.query.join(Estudiante).filter(Estudiante.idcurso==curso).order_by(Estudiante.nombre).all()
+	return render_template("informe.html",asistencias=asistencias,type=type)
 
 
 
-
-
-def find_class(correo):
-	try:
-		objeto=db.session.query(Preceptor).filter(Preceptor.correo==correo).first()
-	except:
-		objeto=db.session.query(Padre).filter(Padre.correo==correo).first()
-	return objeto.__class__.__tablename__
 
 
 def validar_email(email):
