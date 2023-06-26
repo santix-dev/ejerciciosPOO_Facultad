@@ -40,7 +40,9 @@ def login():
 			session["id"]=(Preceptor.query.filter_by(correo=mail).first()).id
 			return redirect("/")
 		else:
-			return redirect("/login")
+			return render_template("login.html",mensaje="Datos no validos")
+		# return render_template("login.html",mensaje="Datos no validos")
+		
 			
 @app.route("/registrar_asistencia",methods=["POST","GET"])
 def registrar_asistencia():
@@ -51,7 +53,8 @@ def registrar_asistencia():
 def registrar_asistencia2():
 	curso=int(request.form.get("curso"))
 	clase=int(request.form.get("clase"))
-	fecha=date.today()
+	ano,mes,dia=map(int,request.form.get("fecha").split("-"))
+	fecha=date(ano,mes,dia)
 	alumnos = db.session.query(Estudiante).filter(Estudiante.idcurso==curso).all()
 	for alumno in alumnos:
 		asis=Asistencia(fecha=fecha,codigoclase=clase,asistio="p",justificacion="",idestudiante=alumno.id)

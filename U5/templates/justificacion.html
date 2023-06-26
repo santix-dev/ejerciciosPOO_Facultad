@@ -1,7 +1,20 @@
-<form action="{{ url_for('justificar') }}" method="post">
-    Justificacion:
-    <input type="hidden" name="id" value="{{asist.id}}">
-    <input type="hidden" name="curso" value="{{asist.estudiante.idcurso}}">
-    <input type="text" name="justif" id="" autofocus>
-    <button type="submit">Guardar</button>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="{{ url_for('static',filename='css/estilo_form.css') }}" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="container">
+        <h1>Justificacion:</h1>
+        <form action="{{ url_for('justificar') }}" method="post">
+            <input type="hidden" name="id" value="{{asist.id}}">
+            <input type="hidden" name="curso" value="{{asist.estudiante.idcurso}}">
+            <input type="text" name="justif" id="" autofocus>
+            <button type="submit">Guardar</button>
+        </form>
+    </div>
+</body>
+</html>

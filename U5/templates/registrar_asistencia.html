@@ -1,14 +1,25 @@
-<div class="container">
-<h1>Tomar asistencia</h1>
-    <form action="{{ url_for('cargar_asistencia') }}" method="post">
-        <label for="asistencia">{{ registro.estudiante.nombre }} {{ registro.estudiante.apellido }}</label>
-        <input type="text" name="asistencia" id="" placeholder="s: presente/ n:ausente" maxlength="1" minlength="1" required autofocus>
-        <input type="hidden" name="curso" value="{{registro.estudiante.idcurso}}">
-        <input type="hidden" name="id" value="{{registro.id}}">
-        <button type="submit">Guardar asistencia</button>
-    </form>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="{{ url_for('static',filename='css/estilo_form.css') }}" rel="stylesheet" type="text/css" />
 
+</head>
+<body>  
+    <div class="container">
+        <h1>Tomar asistencia</h1>
+        <label for="asistencia">{{ registro.estudiante.nombre }} {{ registro.estudiante.apellido }}</label>
+        <form action="{{ url_for('cargar_asistencia') }}" method="post">
+            <input type="text" name="asistencia" id="" placeholder="s: presente/ n:ausente" maxlength="1" minlength="1" required autofocus>
+            <input type="hidden" name="curso" value="{{registro.estudiante.idcurso}}">
+            <input type="hidden" name="id" value="{{registro.id}}">
+            <button type="submit">Guardar asistencia</button>
+        </form>
+    </div>
+</body>
+</html>
 
 
 

@@ -4,23 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Seleccionar curso</title>
+    <link href="{{ url_for('static',filename='css/estilo_form.css') }}" rel="stylesheet" type="text/css" />
 </head>
 <body>
-    <h1>Seleccione un curso</h1>
-    <form action="{{url_for('registrar_asistencia2')}}" method="POST">
-        <select name="curso">
-            {% for curso in cursos %}
-            <option value="{{curso.id}}">{{curso.anio}}°{{curso.division}}°</option>
-            {%endfor%}
-        </select><br>
-        <input type="hidden" name="etapa" value="2">
-        <label for="clase">Tipo Clase:</label><br>
-        <label for="aula">Aula</label>
-        <input type="radio" required name="clase" id="aula" value="1"><br>
-        <label for="fisica">Ed fisica</label>
-        <input type="radio" required name="clase" id="fisica" value="2">
-        <button type="submit">Elegir</button>
-
-    </form>
+    <div class="container">
+        <h1>Pasar asistencia</h1>
+        <form action="{{url_for('registrar_asistencia2')}}" method="POST">
+            <label>Curso</label>
+            <select name="curso">
+                {% for curso in cursos %}
+                <option value="{{curso.id}}">{{curso.anio}}°{{curso.division}}°</option>
+                {%endfor%}
+            </select><br>
+            <label for="fecha">Fecha</label>
+            <input type="date" name="fecha" required><br>
+            <label for="clase">Tipo Clase:</label><br>
+            <div class="flex-doble-row">
+                <div>
+                    <label for="aula">Aula</label>
+                    <input type="radio" required name="clase" id="aula" value="1"><br>
+                </div>
+                <div>
+                    <label for="fisica">Ed fisica</label>
+                    <input type="radio" required name="clase" id="fisica" value="2">
+                </div>
+            </div>
+            <button type="submit">Elegir</button>
+        </form>
+    </div>
 </body>
 </html>
